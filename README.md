@@ -17,4 +17,4 @@ Para OEE, preencha paradas totais em horas, produção total, produção boa e c
 
 Sem paradas totais apontadas, o MTBF usa uma **estimativa pela jornada menos reparos das OS**. Isso não substitui horas efetivamente medidas; a origem aparece no rodapé do painel. OEE não é presumido a partir da jornada. Saúde PCM é um índice gerencial proposto, com metas e pesos editáveis nas guias auxiliares.
 
-As OS continuam em **MEMÓRIA**. As demais guias foram preservadas e ocultadas; use **Reexibir** no Excel para consultar cálculos e parâmetros avançados. A leitura automática de OS vai até a linha 12001 de MEMÓRIA.
+As OS continuam em **MEMÓRIA**. Todas as nove guias originais permanecem visíveis. Somente as novas guias auxiliares PCM ficam ocultas; use **Reexibir** no Excel para consultar seus cálculos e parâmetros avançados. A leitura automática de OS vai até a linha 12001 de MEMÓRIA.
