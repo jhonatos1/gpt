@@ -1,6 +1,17 @@
 # Planilha de manutenção — PAINEL PCM
 
-[Baixar a planilha atualizada](https://github.com/jhonatos1/gpt/raw/refs/heads/main/Planilha_PCM.xlsx)
+[Baixar a planilha otimizada](https://github.com/jhonatos1/gpt/raw/refs/heads/main/Planilha_PCM_Otimizada.xlsx)
+
+**Versão otimizada do arquivo enviado em 21/10/2026.** Dados, layout, guias, formatações, configurações do painel e alterações nas células da MEMÓRIA foram preservados. O painel e a MEMÓRIA permanecem integralmente iguais ao anexo; a otimização está nas fórmulas auxiliares e de resumo.
+
+- As buscas repetidas das paradas foram substituídas por ordenação e acumulação dos intervalos, mantendo a contagem sem duplicar sobreposições.
+- Foram retiradas 18.340 chamadas voláteis de `OFFSET`/`DESLOC`, substituídas por referências equivalentes à linha anterior.
+- Consultas de soma usam as tabelas existentes; resumos consultam o intervalo ativo. Contagens de colunas inteiras foram preservadas quando contar células vazias poderia mudar seu significado.
+- O arquivo ficou aproximadamente 29% menor. Isso mede tamanho do arquivo; o tempo real de recálculo no Excel não foi medido.
+
+O **modo de cálculo manual foi mantido**, como estava no arquivo enviado: pressione **F9** para atualizar. A opção de forçar um recálculo completo foi retirada para permitir atualização incremental. Não há macros. A ordenação usa `SORTBY`, disponível no Excel 2021/Microsoft 365; o arquivo já usava funções dessa geração, como `XLOOKUP`.
+
+Os resultados substituídos foram comparados nas 12 mil linhas auxiliares, e as expressões de ordenação e os casos de sobreposição foram avaliados separadamente. Células com erros de referência que já existiam foram preservadas, sem alterar regras ou substituir erros por zero. [A versão anterior permanece disponível](https://github.com/jhonatos1/gpt/raw/refs/heads/main/Planilha_PCM.xlsx).
 
 Abra no Excel 2019 ou Microsoft 365. O painel usa fórmulas e listas de seleção, sem macros.
 
