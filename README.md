@@ -1,35 +1,28 @@
 # Planilha de manutenção — PAINEL PCM
 
-[Baixar a planilha otimizada](https://github.com/jhonatos1/gpt/raw/refs/heads/main/Planilha_PCM_Otimizada.xlsx)
+[**Baixar a planilha revisada com cálculo automático**](https://github.com/jhonatos1/gpt/raw/refs/heads/main/Planilha_PCM_Revisada.xlsx)
 
-**Versão otimizada do arquivo enviado em 21/10/2026.** Dados, layout, guias, formatações, configurações do painel e alterações nas células da MEMÓRIA foram preservados. O painel e a MEMÓRIA permanecem integralmente iguais ao anexo; a otimização está nas fórmulas auxiliares e de resumo.
+Versão para **Excel 2024**, baseada no último arquivo enviado. Todas as nove guias originais continuam visíveis. O PAINEL PCM, os dados digitados, as jornadas, os formatos e suas alterações foram preservados. Sem macros.
 
-- As buscas repetidas das paradas foram substituídas por ordenação e acumulação dos intervalos, mantendo a contagem sem duplicar sobreposições.
-- Foram retiradas 18.340 chamadas voláteis de `OFFSET`/`DESLOC`, substituídas por referências equivalentes à linha anterior.
-- Consultas de soma usam as tabelas existentes; resumos consultam o intervalo ativo. Contagens de colunas inteiras foram preservadas quando contar células vazias poderia mudar seu significado.
-- O arquivo ficou aproximadamente 29% menor. Isso mede tamanho do arquivo; o tempo real de recálculo no Excel não foi medido.
+O cálculo está em **Automático**: novas OS e alterações passam a atualizar os indicadores sem exigir F9. Se outra planilha aberta colocar a sessão do Excel em modo manual, selecione **Fórmulas → Opções de Cálculo → Automático**.
 
-O **modo de cálculo manual foi mantido**, como estava no arquivo enviado: pressione **F9** para atualizar. A opção de forçar um recálculo completo foi retirada para permitir atualização incremental. Não há macros. A ordenação usa `SORTBY`, disponível no Excel 2021/Microsoft 365; o arquivo já usava funções dessa geração, como `XLOOKUP`.
+Foram revisadas todas as guias, incluindo MEMÓRIA, CALCULOS, os relatórios e os auxiliares PCM. A revisão mantém a otimização das sobreposições e a retirada de DESLOC/OFFSET, corrige critérios dos resumos, amplia CALCULOS para a capacidade existente de 12.000 OS e compartilha ordenações entre os relatórios diários. O arquivo ficou aproximadamente 19% menor que o anexo recebido; o tempo real de recálculo no Excel não foi medido.
 
-Os resultados substituídos foram comparados nas 12 mil linhas auxiliares, e as expressões de ordenação e os casos de sobreposição foram avaliados separadamente. Células com erros de referência que já existiam foram preservadas, sem alterar regras ou substituir erros por zero. [A versão anterior permanece disponível](https://github.com/jhonatos1/gpt/raw/refs/heads/main/Planilha_PCM.xlsx).
+A duração de atendimento conserva períodos acima de 1.000 horas, com negativos iguais a zero e formato `[h]:mm`. O exemplo informado retorna **1339:34**. O zero anterior ocorria porque o cálculo estava em modo manual; MÁXIMO não limita a duração.
 
-Abra no Excel 2019 ou Microsoft 365. O painel usa fórmulas e listas de seleção, sem macros.
+[**Ver ajustes, verificações e pendências da revisão**](REVISAO_PCM.md). Quatro nomes de linha já estavam apagados nos resumos antigos; os casos dependentes foram sinalizados para revisão. Os nomes e os dados de jornada não foram presumidos. O resumo antigo POR MÁQUINA também tem sete máquinas a menos que o catálogo; sua lista foi preservada.
 
-1. Em **PAINEL PCM**, escolha a máquina em **B4** e o período em **B6 / D6**.
-2. Na tabela abaixo dos cartões, localize a máquina pelo filtro da coluna A.
-3. Informe **horas por semana + dias por semana**, ou **dias + início + fim + intervalo diário**. Horas semanais informadas têm prioridade.
-4. **Paradas OS**, na coluna G azul, é automática. Não digite paradas novamente. Consulte os indicadores nos cartões.
+## Como usar
 
-Exemplo de cadastro, sem alterar os dados entregues: 40 horas/semana e 5 dias = 8 horas/dia, de segunda a sexta. A planilha conta os dias correspondentes entre as datas, inclusive semanas incompletas. Com horários, considera turnos que passam da meia-noite e desconta o intervalo em minutos.
+1. Em **PAINEL PCM**, escolha a máquina em **B4** e as datas em **B6 / D6**.
+2. Na tabela abaixo dos cartões, use o filtro da coluna A para localizar a máquina.
+3. Informe horas por semana e dias por semana, ou dias e início/fim/intervalo diário. Horas semanais informadas têm prioridade.
+4. Insira as OS em **MEMÓRIA**, dentro da capacidade atual de leitura até a linha **12001**. As paradas do painel são calculadas automaticamente a partir das OS **MÁQUINA PARADA**.
 
-A jornada representa uma previsão uniforme: 5 dias = seg–sex, 6 = seg–sáb, 7 = todos os dias. Não desconta feriados, férias ou mudanças históricas de escala. Nenhuma jornada foi presumida para as máquinas: preencha os valores reais.
+O painel mostra MTBF, MTTR, confiabilidade, corretiva/preventiva, disponibilidade e Índice de Saúde PCM. OEE e campos de produção continuam removidos.
 
-As paradas automáticas vêm das OS **MÁQUINA PARADA**, incluindo as marcadas como falha operacional. O intervalo usa **data da realização J, início K e finalização M**, com ajuste para meia-noite. A planilha une intervalos simultâneos para não contar o mesmo tempo duas vezes e considera apenas o trecho entre as datas **B6 / D6**, inclusive quando o evento começou antes do período. OS sem horários devem ser revisadas na fonte; não são substituídas por zero.
+As jornadas são previsões uniformes por semana, sem desconto de feriados e sem alterações históricas de escala. As paradas PCM usam a data/início/fim da realização, unem intervalos simultâneos e recortam o período escolhido; não são cortadas pelos horários da jornada. Dados insuficientes ou capacidades incompatíveis precisam de revisão na fonte.
 
-O painel acompanha **MTBF, MTTR, confiabilidade, corretiva/preventiva, disponibilidade e Índice de Saúde PCM**. OEE e seus campos de produção foram removidos. Basta cadastrar a jornada; os registros de manutenção vêm das OS.
+Saúde PCM é uma nota gerencial proposta de 0 a 100, com metas e pesos editáveis em PCM_PARAMETROS. Não representa uma medição física da máquina. As guias auxiliares permanecem ocultas e podem ser reexibidas para consulta.
 
-MTBF e disponibilidade usam **horas previstas pela jornada menos as paradas registradas nas OS**. São estimativas: os intervalos de realização não incluem necessariamente espera desde a abertura nem perdas sem OS, e não são cortados pelos horários do turno ou do intervalo. Horas paradas maiores que as horas previstas bloqueiam o cálculo para revisão.
-
-**Saúde PCM** é uma nota gerencial proposta de 0 a 100, calculada somente com MTBF, MTTR, percentual de preventiva e disponibilidade. Cada componente recebe uma nota limitada a 100% da sua meta; para MTTR, menor é melhor. As quatro notas têm pesos iguais inicialmente. Metas sugeridas: MTBF 100 h, MTTR 2 h, preventiva 80% e disponibilidade 95%, editáveis em **PCM_PARAMETROS**. Não são padrões obrigatórios nem uma medição física da condição da máquina. Sem dados suficientes, o índice fica pendente; não depende de dados de produção.
-
-As OS continuam em **MEMÓRIA**. Todas as nove guias originais permanecem visíveis. Somente as novas guias auxiliares PCM ficam ocultas; use **Reexibir** no Excel para consultar seus cálculos e parâmetros avançados. A leitura automática de OS vai até a linha 12001 de MEMÓRIA.
+Versões anteriores: [otimizada em modo manual](https://github.com/jhonatos1/gpt/raw/refs/heads/main/Planilha_PCM_Otimizada.xlsx) · [versão anterior](https://github.com/jhonatos1/gpt/raw/refs/heads/main/Planilha_PCM.xlsx).
